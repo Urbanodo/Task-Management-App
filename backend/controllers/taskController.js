@@ -16,6 +16,7 @@ const getTasks = async (req, res) => {
 // CREATE TASK
 
 const createTask = async (req, res) => {
+    console.log("BODY :", req.body);
 
   const {
     title,

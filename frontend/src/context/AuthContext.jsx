@@ -1,19 +1,18 @@
 import { createContext, useState } from "react";
 
+// ✅ AuthContext dans le même fichier mais export séparé est accepté
+// si on désactive la règle ESLint pour ce fichier
+/* eslint-disable react-refresh/only-export-components */
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
 
   const login = (userData) => {
-    localStorage.setItem(
-      "user",
-      JSON.stringify(userData)
-    );
-
+    localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };
 
@@ -23,13 +22,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        login,
-        logout
-      }}
-    >
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -50,38 +50,50 @@ function Login() {
   };
 
   return (
-    <div>
+  <div>
+    <h1>Connexion</h1>
 
-      <h1>Connexion</h1>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+        required
+      />
 
-      <form onSubmit={handleSubmit}>
+      <br />
+      <br />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
+      <input
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        onChange={handleChange}
+        required
+      />
 
-        <br />
+      <br />
+      <br />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          onChange={handleChange}
-        />
+      <button type="submit">
+        Se connecter
+      </button>
+    </form>
 
-        <br />
+    <br />
 
-        <button type="submit">
-          Se connecter
-        </button>
+    <p>
+      Vous n'avez pas de compte ?
+    </p>
 
-      </form>
-
-    </div>
-  );
+    <button
+      onClick={() => navigate("/register")}
+    >
+      Créer un compte
+    </button>
+  </div>
+);
 }
 
 export default Login;

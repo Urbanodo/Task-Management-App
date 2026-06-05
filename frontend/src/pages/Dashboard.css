@@ -1,6 +1,12 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+
+  background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .dashboard {
@@ -12,16 +18,16 @@ body {
 .dashboard h1 {
   flex: 1;               
   text-align: center;
-  color: #333;
+  color: #dfe0dded;
   margin: 0;
 }
 
 .form-container {
-  background: white;
+  background: rgba(248, 245, 243, 0.907);
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(21, 20, 20, 0.221);
 }
 
 .form-container input,
@@ -58,13 +64,12 @@ body {
 }
 
 .task-card {
-  background: white;
+  background: rgba(255,255,255,0.95);
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
 .priority-haute {
   color: red;
   font-weight: bold;
@@ -107,7 +112,7 @@ body {
 }
 
 .stat-card {
-  background: white;
+  background: rgba(255,255,255,0.95);
   padding: 20px;
   min-width: 150px;
   border-radius: 10px;
@@ -117,7 +122,7 @@ body {
 
 .stat-card h3 {
   margin: 0;
-  color: #555;
+  color: #0b0b0b85;
 }
 
 .stat-card p {
@@ -134,6 +139,7 @@ body {
 }
 
 .progress-section h3 {
+  color: white;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -167,4 +173,23 @@ body {
   cursor: pointer;
   background-color: #dc2626;
   color: white;
+}
+.header {
+  text-align: center;
+  color: white;
+  padding: 30px;
+  margin-bottom: 20px;
+
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.header p {
+  margin-top: 10px;
+  font-size: 18px;
 }

@@ -152,6 +152,12 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
+        <header className="header">
+  <h1>Task Management App</h1>
+  <p>
+    Organisez vos tâches et suivez votre progression
+  </p>
+</header>
 
       {/* TOP BAR */}
       <div className="top-bar">

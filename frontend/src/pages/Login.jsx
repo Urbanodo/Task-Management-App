@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import API from "../services/api";
-import "../pages/Login.css";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -22,13 +22,20 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await API.post("/users/login", formData);
+      const response = await API.post(
+        "/users/login",
+        formData
+      );
+
       login(response.data);
+
       navigate("/dashboard");
     } catch (error) {
       alert(
-        error.response?.data?.message || "Erreur de connexion"
+        error.response?.data?.message ||
+          "Erreur de connexion"
       );
     }
   };
@@ -44,6 +51,7 @@ function Login() {
             name="email"
             placeholder="Email"
             onChange={handleChange}
+            required
           />
 
           <input
@@ -51,20 +59,30 @@ function Login() {
             name="password"
             placeholder="Mot de passe"
             onChange={handleChange}
+            required
           />
 
-          <button type="submit">Se connecter</button>
+          <button type="submit">
+            Se connecter
+          </button>
         </form>
 
         <div className="register-link">
-          <p>Vous n'avez pas de compte ?</p>
-          <button onClick={() => navigate("/register")}>
+          <p>
+            Vous n'avez pas de compte ?
+          </p>
+
+          <button
+            onClick={() =>
+              navigate("/register")
+            }
+          >
             Créer un compte
           </button>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
 
-export default Login; 
+export default Login;

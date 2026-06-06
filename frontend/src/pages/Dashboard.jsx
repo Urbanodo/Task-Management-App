@@ -25,13 +25,16 @@ function Dashboard() {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
 
-  // ✅ logique fetchTasks directement dans useEffect avec isMounted
   useEffect(() => {
     let isMounted = true;
 
     const loadTasks = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.token) {
+          navigate("/");
+          return;
+        }
         const response = await API.get("/tasks", {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -50,12 +53,16 @@ function Dashboard() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [navigate]);
 
   const createTask = async (e) => {
     e.preventDefault();
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      if (!user || !user.token) {
+        navigate("/");
+        return;
+      }
       const response = await API.post(
         "/tasks",
         { title, description, dueDate, priority },
@@ -79,6 +86,10 @@ function Dashboard() {
   const updateTask = async (id) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      if (!user || !user.token) {
+        navigate("/");
+        return;
+      }
       const response = await API.put(`/tasks/${id}`, editTask, {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -106,6 +117,10 @@ function Dashboard() {
     if (!confirmDelete) return;
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      if (!user || !user.token) {
+        navigate("/");
+        return;
+      }
       await API.delete(`/tasks/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -152,12 +167,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-        <header className="header">
-  <h1>Task Management App</h1>
-  <p>
-    Organisez vos tâches et suivez votre progression
-  </p>
-</header>
 
       {/* TOP BAR */}
       <div className="top-bar">
@@ -352,10 +361,6 @@ function Dashboard() {
             ) : (
               <>
                 <h3>{task.title}</h3>
-                <p>
-                   <strong>Créée par :</strong>{" "}
-                    {task.user?.name}
-                </p>
                 <p>{task.description}</p>
                 <p>
                   Échéance :{" "}

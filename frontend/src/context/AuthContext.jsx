@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 
-// ✅ AuthContext dans le même fichier mais export séparé est accepté
-// si on désactive la règle ESLint pour ce fichier
+
 /* eslint-disable react-refresh/only-export-components */
 
 export const AuthContext = createContext();

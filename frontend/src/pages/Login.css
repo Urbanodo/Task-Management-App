@@ -1,8 +1,21 @@
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
 .login-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-container {
@@ -25,6 +38,7 @@
   margin: 10px 0;
   border: none;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .login-container button {
@@ -39,6 +53,14 @@
   font-size: 16px;
 }
 
+.login-container button:hover {
+  background: #1d4ed8;
+}
+
 .register-link {
   margin-top: 20px;
+}
+
+.register-link p {
+  margin-bottom: 10px;
 }

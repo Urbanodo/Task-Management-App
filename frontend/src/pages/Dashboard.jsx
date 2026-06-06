@@ -362,6 +362,15 @@ function Dashboard() {
               <>
                 <h3>{task.title}</h3>
                 <p>{task.description}</p>
+
+                {/* ✅ Nom de l'utilisateur */}
+                <p>
+                  Créé par :
+                  <span style={{ fontWeight: "bold", color: "#2563eb" }}>
+                    {" "}{task.user?.name || "Inconnu"}
+                  </span>
+                </p>
+
                 <p>
                   Échéance :{" "}
                   {task.dueDate

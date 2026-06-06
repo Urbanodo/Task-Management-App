@@ -5,8 +5,8 @@ const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find({
       user: req.user._id,
-    });
-    res.json(tasks); // ✅ réponse manquante ajoutée
+    }).populate("user", "name"); // ✅ récupère le nom de l'utilisateur
+    res.json(tasks);
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur" });
   }
@@ -24,7 +24,9 @@ const createTask = async (req, res) => {
       dueDate,
       priority,
     });
-    res.status(201).json(task);
+    // ✅ populate après création pour avoir le nom
+    const populatedTask = await task.populate("user", "name");
+    res.status(201).json(populatedTask);
   } catch (error) {
     res.status(500).json({ message: "Erreur lors de la création" });
   }
@@ -46,8 +48,8 @@ const updateTask = async (req, res) => {
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { returnDocument: "after" } // ✅ remplace { new: true }
-    );
+      { returnDocument: "after" }
+    ).populate("user", "name"); // ✅ populate après modification
 
     res.json(updatedTask);
   } catch (error) {

@@ -6,10 +6,8 @@ const Task = require("../models/Task");
 const getTasks = async (req, res) => {
 
   const tasks = await Task.find({
-    user: req.user._id
-  });
-
-  res.json(tasks);
+  user: req.user._id
+}).populate("user", "name");
 };
 
 
@@ -26,14 +24,18 @@ const createTask = async (req, res) => {
   } = req.body;
 
   const task = await Task.create({
-    user: req.user._id,
-    title,
-    description,
-    dueDate,
-    priority
-  });
+  user: req.user._id,
+  title,
+  description,
+  dueDate,
+  priority
+});
 
-  res.status(201).json(task);
+const populatedTask =
+  await Task.findById(task._id)
+    .populate("user", "name");
+
+res.status(201).json(populatedTask);
 };
 
 

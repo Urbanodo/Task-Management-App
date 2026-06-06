@@ -352,6 +352,10 @@ function Dashboard() {
             ) : (
               <>
                 <h3>{task.title}</h3>
+                <p>
+                   <strong>Créée par :</strong>{" "}
+                    {task.user?.name}
+                </p>
                 <p>{task.description}</p>
                 <p>
                   Échéance :{" "}
